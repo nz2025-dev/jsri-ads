@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lanka Ads Blog Post</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f9fa;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #ff6b9d, #ff4081);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-btn {
+            background: white;
+            color: #ff4081;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            transition: 0.3s;
+        }
+
+        /* Main Content */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            font-weight: 700;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .blog-image.logo-bg {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+
+        .blog-image.wellness-bg {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+        }
+
+        .blog-image.massage-bg {
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+        }
+
+        .blog-image svg, .blog-image img {
+            width: 100px;
+            height: 100px;
+            filter: brightness(0) invert(1);
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 1rem;
+        }
+
+        .blog-tags {
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* Footer Tags */
+        .footer-tags {
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .footer-tags p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 0.9rem;
+        }
+
+        /* Partner Logos */
+        .partner-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .partner-logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .partner-logo:hover {
+            transform: scale(1.1);
+        }
+        .cta-button {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .cta-button:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        .partner-logo:nth-child(1) { background: linear-gradient(135deg, #ff6b9d, #ff4081); }
+        .partner-logo:nth-child(2) { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .partner-logo:nth-child(3) { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .partner-logo:nth-child(4) { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .partner-logo:nth-child(5) { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .partner-logo:nth-child(6) { background: linear-gradient(135deg, #fa709a, #fee140); }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, #ff6b9d, #ff4081);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .mobile-toggle.active span:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .mobile-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-toggle.active span:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            .nav-container {
+                position: relative;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .main-container {
+                padding: 2rem 1rem;
+            }
+
+            .partner-logos {
+                gap: 1rem;
+            }
+
+            .partner-logo {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+
+            .blog-title {
+                font-size: 1.2rem;
+            }
+
+            .blog-content {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#" class="logo">Lanka Ads</a>
+            
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="#">Terms and conditions</a></li>
+                <li><a href="#">Privacy policy</a></li>
+                <li><a href="#" class="cta-button">Lanka Ads</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <h1 class="page-title">Lanka Ads Blog Post</h1>
+
+        <div class="blog-grid">
+            <!-- Blog Post 1 -->
+            <article class="blog-card">
+                <div class="blog-image logo-bg">
+                    <svg viewBox="0 0 100 100" width="100" height="100">
+                        <path d="M20 20 Q50 10, 80 20 Q70 50, 80 80 Q50 70, 20 80 Q30 50, 20 20" fill="white"/>
+                        <circle cx="50" cy="50" r="15" fill="rgba(255,255,255,0.3)"/>
+                    </svg>
+                </div>
+                <div class="blog-content">
+                    <h2 class="blog-title">Explore Sri Lanka with Lanka-Ads.co: Your Go-To Platform for All Your Needs</h2>
+                    <p class="blog-excerpt">Spa Ads: Relax and rejuvenate with our top-rated spa services. Personal Ads: Connect with new people for friendships, romance, or professional networking. SL Ads: Explore local services, offers, and more.</p>
+                    <div class="blog-meta">
+                        <span>8/25/2024</span>
+                        <span>2 min read</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Blog Post 2 -->
+            <article class="blog-card">
+                <div class="blog-image wellness-bg">
+                    <svg viewBox="0 0 100 100" width="100" height="100">
+                        <rect x="30" y="40" width="40" height="20" rx="10" fill="white"/>
+                        <circle cx="35" cy="30" r="8" fill="white"/>
+                        <circle cx="65" cy="30" r="8" fill="white"/>
+                        <path d="M25 70 Q50 60, 75 70" stroke="white" stroke-width="3" fill="none"/>
+                    </svg>
+                </div>
+                <div class="blog-content">
+                    <h2 class="blog-title">Discover Your Ideal Personal and Wellness Ads on LankaAds</h2>
+                    <p class="blog-excerpt">Lanka Ads | Sl Ads | Lanka Ad | Sl Ad | Lanka Add | Personal Ad | Personal Ads | Personal Add | Sri Lanka Ads | Hela Ads | Cam | Massage | Spa Ads | Ad Lanka</p>
+                    <div class="blog-meta">
+                        <span>8/15/2024</span>
+                        <span>4 min read</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Blog Post 3 -->
+            <article class="blog-card">
+                <div class="blog-image massage-bg">
+                    <svg viewBox="0 0 100 100" width="100" height="100">
+                        <ellipse cx="50" cy="30" rx="25" ry="15" fill="white"/>
+                        <rect x="35" y="40" width="30" height="40" rx="15" fill="white"/>
+                        <circle cx="40" cy="55" r="3" fill="rgba(67,233,123,0.5)"/>
+                        <circle cx="60" cy="55" r="3" fill="rgba(67,233,123,0.5)"/>
+                        <circle cx="50" cy="65" r="3" fill="rgba(67,233,123,0.5)"/>
+                    </svg>
+                </div>
+                <div class="blog-content">
+                    <h2 class="blog-title">Unlocking Opportunities: How LankaAds Connects You to the Best SL Ads</h2>
+                    <p class="blog-excerpt">Lanka Ads | Sl Ads | Lanka Ad | Sl Ad | Lanka Add | Personal Ad | Personal Ads | Personal Add | Sri Lanka Ads | Hela Ads | Cam | Massage | Spa Ads | Ad Lanka</p>
+                    <div class="blog-meta">
+                        <span>8/15/2024</span>
+                        <span>4 min read</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- Footer Tags -->
+        <div class="footer-tags">
+            <p>Lanka Ads | Sl Ads | Lanka Ad | Sl Ad | Lanka Add | Personal Ad | Personal Ads | Personal Add | Sri Lanka Ads | Hela Ads | Cam | Massage | Spa Ads | Ad Lanka</p>
+        </div>
+
+        <!-- Partner Logos -->
+        <div class="partner-logos">
+            <div class="partner-logo">
+                <svg viewBox="0 0 30 30" width="30" height="30">
+                    <text x="15" y="20" text-anchor="middle" fill="white" font-size="12" font-weight="bold">LA</text>
+                </svg>
+            </div>
+            <div class="partner-logo">
+                <svg viewBox="0 0 30 30" width="30" height="30">
+                    <circle cx="15" cy="15" r="10" fill="white"/>
+                    <circle cx="15" cy="15" r="6" fill="currentColor"/>
+                </svg>
+            </div>
+            <div class="partner-logo">
+                <svg viewBox="0 0 30 30" width="30" height="30">
+                    <path d="M8 8 L22 8 L18 22 L12 22 Z" fill="white"/>
+                </svg>
+            </div>
+            <div class="partner-logo">
+                <svg viewBox="0 0 30 30" width="30" height="30">
+                    <ellipse cx="15" cy="15" rx="12" ry="8" fill="white"/>
+                </svg>
+            </div>
+            <div class="partner-logo">
+                <svg viewBox="0 0 30 30" width="30" height="30">
+                    <polygon points="15,5 25,20 5,20" fill="white"/>
+                </svg>
+            </div>
+            <div class="partner-logo">
+                <svg viewBox="0 0 30 30" width="30" height="30">
+                    <rect x="8" y="8" width="14" height="14" rx="3" fill="white"/>
+                </svg>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileToggle.addEventListener('click', function() {
+            mobileToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Blog Card Hover Effects
+        const blogCards = document.querySelectorAll('.blog-card');
+        blogCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Partner Logo Animation
+        const partnerLogos = document.querySelectorAll('.partner-logo');
+        partnerLogos.forEach((logo, index) => {
+            logo.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.15) rotate(5deg)';
+            });
+            
+            logo.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+
+        // Smooth Scroll Animation on Load
+        window.addEventListener('load', function() {
+            const cards = document.querySelectorAll('.blog-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+
+        // Add click handlers for blog cards
+        blogCards.forEach(card => {
+            card.addEventListener('click', function() {
+                // Add a subtle click animation
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'translateY(-5px) scale(1.02)';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>

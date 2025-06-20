@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lanka Ads - Spa & Massage Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #ff6b9d, #ff8e8e);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: white;
+            border-radius: 1px;
+        }
+
+        .cta-button {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .cta-button:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f5f5dc" width="1200" height="600"/><ellipse cx="600" cy="300" rx="400" ry="200" fill="%23ddd" opacity="0.3"/><circle cx="300" cy="150" r="80" fill="%23fff" opacity="0.2"/><circle cx="900" cy="450" r="60" fill="%23fff" opacity="0.15"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 8rem 0 6rem;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(101, 67, 33, 0.8), rgba(139, 105, 71, 0.6));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Services Section */
+        .services-section {
+            background: linear-gradient(135deg, #1a2a3a, #2c3e50);
+            padding: 6rem 0;
+            color: white;
+            text-align: center;
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .services-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .services-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .service-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .service-image {
+            height: 250px;
+            background: linear-gradient(135deg, #d4a574, #f4e4bc);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-image::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .service-image::after {
+            content: '✨';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+
+        .service-content {
+            padding: 2rem;
+            text-align: left;
+        }
+
+        .service-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .service-content p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23f8f5f0" width="1200" height="400"/><path d="M0,200 Q300,100 600,200 T1200,200 L1200,400 L0,400 Z" fill="%23fff" opacity="0.3"/></svg>');
+            background-size: cover;
+            padding: 6rem 0;
+            color: #333;
+        }
+
+        .testimonials-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .testimonial {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-5px);
+        }
+
+        .stars {
+            color: #ffa500;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b9d, #667eea);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Treatments Gallery */
+        .treatments {
+            padding: 6rem 0;
+            background: #fff;
+        }
+
+        .treatments-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .treatments-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .treatments-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
+            color: #666;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .treatments-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .treatment-item {
+            height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #f4e4bc, #d4a574);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .treatment-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+        }
+
+        .treatment-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.3), rgba(0,0,0,0.1));
+            transition: all 0.3s ease;
+        }
+
+        .treatment-item:hover::before {
+            background: linear-gradient(135deg, rgba(0,0,0,0.1), rgba(0,0,0,0.05));
+        }
+
+        .treatment-item::after {
+            content: attr(data-title);
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-logos {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff6b9d, #667eea);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .footer-logo:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: linear-gradient(135deg, #ff6b9d, #ff8e8e);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding: 6rem 0 4rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .treatments-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .services-section,
+            .testimonials,
+            .treatments {
+                padding: 4rem 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 4rem 0 3rem;
+            }
+
+            .hero-content {
+                padding: 0 1rem;
+            }
+
+            .services-container,
+            .testimonials-container,
+            .treatments-container {
+                padding: 0 1rem;
+            }
+
+            .service-card {
+                min-width: auto;
+            }
+
+            .treatment-item {
+                height: 200px;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#" class="logo">Lanka Ads</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="#terms">Terms and conditions</a></li>
+                <li><a href="#privacy">Privacy policy</a></li>
+                <li><a href="#" class="cta-button">Lanka Ads</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">☰</div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title fade-in">Escape. Relax. Rejuvenate.</h1>
+            <p class="hero-subtitle fade-in">Indulge in ultimate relaxation with top-notch spa massage services at Serenity Spa</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="services-container">
+            <h2 class="services-title fade-in">Luxurious Spa Massage</h2>
+            <p class="services-subtitle fade-in">Escape daily stress with top-notch spa massage services at Serenity Spa. Indulge now!</p>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-image"></div>
+                    <div class="service-content">
+                        <h3>Ultimate Relaxation Experience</h3>
+                        <p>Indulge in luxurious spa treatments at Serenity Spa for the ultimate relaxation experience.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-image"></div>
+                    <div class="service-content">
+                        <h3>Pamper Yourself Today</h3>
+                        <p>Treat yourself to a pampering session at Serenity Spa and rejuvenate your mind and body.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-image"></div>
+                    <div class="service-content">
+                        <h3>Sanctuary of Relaxation</h3>
+                        <p>Relax and Rejuvenate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <div class="testimonials-grid">
+                <div class="testimonial slide-in-left">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"I felt completely relaxed and rejuvenated after my spa massage experience at Serenity Spa. I highly recommend!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SS</div>
+                        <div class="author-name">Sara Smith</div>
+                    </div>
+                </div>
+                
+                <div class="testimonial slide-in-right">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"The spa massage at Serenity Spa was truly a luxurious experience. I left feeling pampered and refreshed."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div class="author-name">John Doe</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Treatments Gallery -->
+    <section class="treatments">
+        <div class="treatments-container">
+            <h2 class="treatments-title fade-in">Luxurious Treatments</h2>
+            <p class="treatments-subtitle fade-in">Escape daily stresses and pamper yourself with our top-notch spa services.</p>
+            
+            <div class="treatments-gallery">
+                <div class="treatment-item fade-in" data-title="Aromatherapy"></div>
+                <div class="treatment-item fade-in" data-title="Deep Tissue Massage"></div>
+                <div class="treatment-item fade-in" data-title="Essential Oils"></div>
+                <div class="treatment-item fade-in" data-title="Citrus Therapy"></div>
+                <div class="treatment-item fade-in" data-title="Hot Stone Massage"></div>
+                <div class="treatment-item fade-in" data-title="Relaxation Therapy"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Lanka Ads</a>
+                <a href="#">Sl Ads</a>
+                <a href="#">Lanka Ad</a>
+                <a href="#">Sl Ad</a>
+                <a href="#">Lanka Add</a>
+                <a href="#">Personal Ad</a>
+                <a href="#">Personal Ads</a>
+                <a href="#">Personal Add</a>
+                <a href="#">Sri Lanka Ads</a>
+                <a href="#">Hela Ads</a>
+                <a href="#">Cam</a>
+                <a href="#">Massage</a>
+                <a href="#">Spa Ads</a>
+                <a href="#">Ad Lanka</a>
+            </div>
+            
+            <div class="footer-logos">
+                <div class="footer-logo">LA</div>
+                <div class="footer-logo">SA</div>
+                <div class="footer-logo">MS</div>
+                <div class="footer-logo">VA</div>
+                <div class="footer-logo">PA</div>
+            </div>
+            
+            <p>&copy; 2024 Lanka Ads. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Service card hover effects
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.background = 'rgba(255,255,255,0.2)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.background = 'rgba(255,255,255,0.1)';
+            });
+        });
+
+        // Treatment gallery interactions
+        document.querySelectorAll('.treatment-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const title = this.getAttribute('data-title');
+                alert(`Learn more about our ${title} treatment!`);
+            });
+        });
+
+        // Header scroll effect
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 100) {
+                header.style.background = 'linear-gradient(135deg, rgba(255, 107, 157, 0.95), rgba(255, 142, 142, 0.95))';
+                header.style.backdropFilter = 'blur(15px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #ff6b9d, #ff8e8e)';
+                header.style.backdropFilter = 'none';
+            }
+            
+            // Hide/show header on scroll
+            if (scrollTop > lastScrollTop && scrollTop > 200) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            lastScrollTop = scrollTop;
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero');
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            
+            hero.style.transform = `translateY(${rate}px)`;
+        });
+
+        // Dynamic star rating animation
+        document.querySelectorAll('.stars').forEach(stars => {
+            const text = stars.textContent;
+            stars.innerHTML = '';
+            
+            for (let i = 0; i < 5; i++) {
+                const star = document.createElement('span');
+                star.textContent = '★';
+                star.style.animationDelay = `${i * 0.1}s`;
+                star.style.animation = 'twinkle 2s ease-in-out infinite';
+                stars.appendChild(star);
+            }
+        });
+
+        // Add CSS animation for stars
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes twinkle {
+                0%, 100% { opacity: 1; transform: scale(1); }
+                50% { opacity: 0.5; transform: scale(1.2); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Page load animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
