@@ -466,6 +466,35 @@
         .footer-logo:hover {
             transform: scale(1.1) rotate(5deg);
         }
+        .treatment-item {
+	  width: 100%;
+	  max-width: 300px;
+	  height: 200px;
+	  background-size: cover;
+	  background-position: center;
+	  border-radius: 8px;
+	  margin: 10px;
+	}
+
+	/* Apply images by nth-child or class */
+	.treatments-gallery .treatment-item:nth-child(1) {
+	  background-image: url('lanka_ads.avif');
+	}
+	.treatments-gallery .treatment-item:nth-child(2) {
+	  background-image: url('lanka_ads_1.avif');
+	}
+	.treatments-gallery .treatment-item:nth-child(3) {
+	  background-image: url('lanka_ads_2.avif');
+	}
+	.treatments-gallery .treatment-item:nth-child(4) {
+	  background-image: url('lanka_ads_3.avif');
+	}
+	.treatments-gallery .treatment-item:nth-child(5) {
+	  background-image: url('lanka_ads_4.avif');
+	}
+	.treatments-gallery .treatment-item:nth-child(6) {
+	  background-image: url('lanka_ads_5.avif');
+	}
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -671,14 +700,14 @@
             <h2 class="treatments-title fade-in">Luxurious Treatments</h2>
             <p class="treatments-subtitle fade-in">Escape daily stresses and pamper yourself with our top-notch spa services.</p>
             
-            <div class="treatments-gallery">
-                <div class="treatment-item fade-in" data-title="Aromatherapy"></div>
-                <div class="treatment-item fade-in" data-title="Deep Tissue Massage"></div>
-                <div class="treatment-item fade-in" data-title="Essential Oils"></div>
-                <div class="treatment-item fade-in" data-title="Citrus Therapy"></div>
-                <div class="treatment-item fade-in" data-title="Hot Stone Massage"></div>
-                <div class="treatment-item fade-in" data-title="Relaxation Therapy"></div>
-            </div>
+          <div class="treatments-gallery">
+		  <div class="treatment-item fade-in" data-title="Aromatherapy"></div>
+		  <div class="treatment-item fade-in" data-title="Deep Tissue Massage"></div>
+		  <div class="treatment-item fade-in" data-title="Essential Oils"></div>
+		  <div class="treatment-item fade-in" data-title="Citrus Therapy"></div>
+		  <div class="treatment-item fade-in" data-title="Hot Stone Massage"></div>
+		  <div class="treatment-item fade-in" data-title="Relaxation Therapy"></div>
+		</div>
         </div>
     </section>
 
@@ -710,7 +739,7 @@
                 <div class="footer-logo">PA</div>
             </div>
             
-            <p>&copy; 2024 Lanka Ads. All rights reserved.</p>
+            <p>&copy; 2025 Lanka Ads. All rights reserved.</p>
         </div>
     </footer>
 
