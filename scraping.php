@@ -83,7 +83,7 @@ function absolute_url($base, $relative) {
 }
 
 // Use passed URL or default
-$baseUrl = "https://lanka-ad.com/";
+//$baseUrl = "https://lanka-ad.com/";
 if (isset($_GET['url']) && filter_var($_GET['url'], FILTER_VALIDATE_URL)) {
     $url = $_GET['url'];
     $baseUrl = parse_url($url, PHP_URL_SCHEME) . '://' . parse_url($url, PHP_URL_HOST);
