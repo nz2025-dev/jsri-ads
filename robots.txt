@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+Sitemap: https://lanka-aads.com/sitemap.xml
+
